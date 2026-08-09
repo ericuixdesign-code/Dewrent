@@ -1,0 +1,116 @@
+import type { Config } from "tailwindcss";
+
+export default {
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: "#F9F8FC",
+          100: "#F2F1F8",
+          200: "#DFDBEE",
+          300: "#C5BFE0",
+          400: "#A49BCF",
+          500: "#7D70BA",
+          600: "#6A5F9E",
+          700: "#584E82",
+          800: "#3F385D",
+          900: "#28243C",
+          950: "#171421",
+        },
+        secondary: {
+          50: "#F7FCFF",
+          100: "#EBF8FF",
+          200: "#D1F0FF",
+          300: "#B6E6FF",
+          400: "#85D6FF",
+          500: "#5CC8FF",
+          600: "#4EAAD9",
+          700: "#3F88AD",
+          800: "#2C607A",
+          900: "#1C3C4D",
+          950: "#11242E",
+        },
+        neutral: {
+          0: "#FFFFFF",
+          50: "#FAFAFB",
+          100: "#F4F4F6",
+          200: "#E7E7EC",
+          300: "#CFCFD8",
+          400: "#9C9CAA",
+          500: "#6E6E7E",
+          600: "#54545F",
+          700: "#3D3D46",
+          800: "#26262D",
+          900: "#14141A",
+          950: "#0A0A0F",
+        },
+        success: { 100: "#DCFCE7", 500: "#22C55E", 700: "#15803D" },
+        warning: { 100: "#FEF3C7", 500: "#F59E0B", 700: "#B45309" },
+        danger: { 100: "#FEE2E2", 500: "#EF4444", 700: "#B91C1C" },
+      },
+      fontFamily: {
+        display: [
+          '"Bricolage Grotesque"',
+          "system-ui",
+          "sans-serif",
+        ],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+      },
+      fontSize: {
+        "display-2xl": ["72px", { lineHeight: "76px", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "display-xl": ["60px", { lineHeight: "64px", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.015em", fontWeight: "600" }],
+        "display-md": ["36px", { lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "600" }],
+      },
+      borderRadius: {
+        xs: "4px",
+        sm: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "28px",
+      },
+      spacing: {
+        13: "52px",
+        15: "60px",
+        18: "72px",
+      },
+      boxShadow: {
+        xs: "0 1px 2px rgba(20, 20, 26, 0.05)",
+        sm: "0 2px 4px rgba(20, 20, 26, 0.06), 0 1px 2px rgba(20, 20, 26, 0.04)",
+        md: "0 6px 16px rgba(20, 20, 26, 0.08), 0 2px 4px rgba(20, 20, 26, 0.06)",
+        lg: "0 12px 32px rgba(20, 20, 26, 0.10), 0 4px 8px rgba(20, 20, 26, 0.06)",
+        xl: "0 24px 48px rgba(20, 20, 26, 0.14)",
+        "focus-primary": "0 0 0 4px rgba(125, 112, 186, 0.25)",
+        "focus-secondary": "0 0 0 4px rgba(92, 200, 255, 0.25)",
+      },
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.16, 1, 0.3, 1)",
+        in: "cubic-bezier(0.7, 0, 0.84, 0)",
+        "in-out": "cubic-bezier(0.65, 0, 0.35, 1)",
+      },
+      keyframes: {
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.3" },
+        },
+      },
+      animation: {
+        fadeUp: "fadeUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        shimmer: "shimmer 1.5s linear infinite",
+        blink: "blink 1.2s ease-in-out infinite",
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;
