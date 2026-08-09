@@ -138,7 +138,8 @@ export default function Checkout() {
   if (submitted) {
     return (
       <section className="pt-36 md:pt-44 pb-28 md:pb-40 bg-white min-h-screen">
-        <div className="container-x max-w-3xl">
+        <div className="container-x">
+          <div className="max-w-3xl mx-auto">
           <div className="text-center">
             <div className="mx-auto w-24 h-24 rounded-full bg-secondary-100 flex items-center justify-center">
               <svg
@@ -251,6 +252,7 @@ export default function Checkout() {
             >
               Browse More
             </Button>
+          </div>
           </div>
         </div>
       </section>
