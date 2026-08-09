@@ -22,22 +22,23 @@ export function Header() {
   }, []);
 
   const isHome = pathname === "/";
+  const dark = scrolled || !isHome;
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out",
-        scrolled || !isHome
-          ? "bg-white/85 backdrop-blur-md border-b border-neutral-200/60"
+        dark
+          ? "bg-white/90 backdrop-blur-md border-b border-neutral-200/70"
           : "bg-transparent",
       )}
     >
-      <div className="container-x flex items-center justify-between h-[72px] md:h-[80px]">
+      <div className="container-x flex items-center justify-between h-[76px] md:h-[88px]">
         <Link
           to="/"
           className={cn(
-            "font-display text-xl md:text-2xl font-semibold tracking-tight",
-            scrolled || !isHome ? "text-neutral-900" : "text-white mix-blend-difference",
+            "font-display text-2xl md:text-[28px] font-semibold tracking-tight leading-none",
+            dark ? "text-neutral-900" : "text-white",
           )}
         >
           Dewrent<span className="text-primary-500">.</span>
@@ -45,21 +46,22 @@ export function Header() {
 
         <nav
           className={cn(
-            "hidden lg:flex items-center gap-1 font-mono text-[13px] uppercase tracking-widest",
-            scrolled || !isHome ? "text-neutral-800" : "text-white mix-blend-difference",
+            "hidden lg:flex items-center gap-1 font-mono text-[12px] uppercase tracking-[0.2em]",
+            dark ? "text-neutral-800" : "text-white",
           )}
         >
           <HeaderItem onClick={openMenu} icon="+">
-            menu
+            Menu
           </HeaderItem>
           <HeaderItem onClick={openDrawer}>
-            Bag.<span className="tabular-nums">{totalItems}</span>
+            Bag<span className="opacity-50 mx-1">·</span>
+            <span className="tabular-nums">{totalItems}</span>
           </HeaderItem>
           <Link
             to="/rentals"
-            className="px-3.5 py-2 rounded-md hover:bg-primary-100/60 transition-colors"
+            className="px-4 py-2 rounded-md hover:bg-primary-100/60 transition-colors"
           >
-            Shop all
+            Shop All
           </Link>
           <HeaderItem onClick={openSearch}>Search</HeaderItem>
           <HeaderItem onClick={openCategories} icon="+">
@@ -69,35 +71,35 @@ export function Header() {
 
         <div
           className={cn(
-            "hidden md:flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest",
-            scrolled || !isHome ? "text-primary-600" : "text-white mix-blend-difference",
+            "hidden md:flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.25em]",
+            dark ? "text-primary-600" : "text-white/80",
           )}
         >
           <span className="opacity-60">[</span>
-          <span>D-RNT</span>
+          <span className="mx-0.5">D-RNT</span>
           <span className="opacity-60">]</span>
         </div>
 
         {/* Mobile actions */}
-        <div className="flex lg:hidden items-center gap-1 font-mono text-[13px]">
+        <div className="flex lg:hidden items-center gap-2 font-mono text-[12px]">
           <button
             onClick={openDrawer}
             className={cn(
-              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-widest",
-              scrolled || !isHome ? "text-neutral-800" : "text-white mix-blend-difference",
+              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em]",
+              dark ? "text-neutral-800" : "text-white",
             )}
           >
-            Bag.{totalItems}
+            Bag · {totalItems}
           </button>
           <button
             onClick={openMenu}
             className={cn(
-              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-widest",
-              scrolled || !isHome ? "text-neutral-800" : "text-white mix-blend-difference",
+              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em]",
+              dark ? "text-neutral-800" : "text-white",
             )}
             aria-label="Open menu"
           >
-            menu +
+            Menu +
           </button>
         </div>
       </div>
@@ -117,10 +119,10 @@ function HeaderItem({
   return (
     <button
       onClick={onClick}
-      className="px-3.5 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-widest inline-flex items-center gap-1.5"
+      className="px-4 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em] inline-flex items-center gap-2"
     >
       <span>{children}</span>
-      {icon && <span className="opacity-60">{icon}</span>}
+      {icon && <span className="opacity-60 text-[10px]">{icon}</span>}
     </button>
   );
 }

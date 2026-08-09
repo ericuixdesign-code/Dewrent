@@ -27,7 +27,7 @@ const ewallets = [
 
 const cities = ["Jakarta", "Bandung", "Yogyakarta", "Bali", "Surabaya"];
 
-export default function Pemesanan() {
+export default function Checkout() {
   const { lines, subtotal, totalDeposit, clearCart } = useCart();
   const navigate = useNavigate();
   const [pickup, setPickup] = useState<PickupMethod>("delivery");
@@ -50,7 +50,7 @@ export default function Pemesanan() {
   const [name, setName] = useState("");
   const [wa, setWa] = useState("");
   const [email, setEmail] = useState("");
-  const [ktp, setKtp] = useState("");
+  const [id, setId] = useState("");
   const [addr, setAddr] = useState("");
   const [pickupCity, setPickupCity] = useState("");
   const [pickupOutlet, setPickupOutlet] = useState("");
@@ -75,7 +75,7 @@ export default function Pemesanan() {
       name.trim() &&
       wa.trim() &&
       email.trim() &&
-      ktp.trim() &&
+      id.trim() &&
       addr.trim() &&
       (pickup === "pickup"
         ? pickupCity && pickupOutlet
@@ -86,7 +86,7 @@ export default function Pemesanan() {
       name,
       wa,
       email,
-      ktp,
+      id,
       addr,
       pickup,
       pickupCity,
@@ -100,9 +100,9 @@ export default function Pemesanan() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    const id = generateReservationId();
+    const rid = generateReservationId();
     setSubmitted({
-      id,
+      id: rid,
       name,
       total,
       payment,
@@ -114,20 +114,20 @@ export default function Pemesanan() {
 
   if (lines.length === 0 && !submitted) {
     return (
-      <section className="pt-32 md:pt-40 pb-24 min-h-[70vh] bg-white">
+      <section className="pt-36 md:pt-44 pb-28 min-h-[70vh] bg-white">
         <div className="container-x text-center py-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-neutral-500">
-            [ pemesanan ]
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+            [ Checkout ]
           </p>
-          <h1 className="mt-3 font-display text-display-md font-semibold">
-            Keranjang kamu masih kosong
+          <h1 className="mt-4 font-display text-display-md font-semibold">
+            Your cart is empty
           </h1>
-          <p className="mt-3 text-neutral-500 max-w-md mx-auto">
-            Tambahkan barang ke keranjang dulu sebelum lanjut ke pemesanan.
+          <p className="mt-4 text-neutral-500 max-w-md mx-auto leading-relaxed">
+            Add items to your bag before continuing to checkout.
           </p>
-          <div className="mt-8">
+          <div className="mt-10">
             <Button as="link" to="/rentals" variant="primary" size="lg">
-              Browse rentals
+              Browse Rentals
             </Button>
           </div>
         </div>
@@ -137,13 +137,13 @@ export default function Pemesanan() {
 
   if (submitted) {
     return (
-      <section className="pt-32 md:pt-40 pb-24 md:pb-32 bg-white min-h-screen">
+      <section className="pt-36 md:pt-44 pb-28 md:pb-40 bg-white min-h-screen">
         <div className="container-x max-w-3xl">
           <div className="text-center">
-            <div className="mx-auto w-20 h-20 rounded-full bg-secondary-100 flex items-center justify-center">
+            <div className="mx-auto w-24 h-24 rounded-full bg-secondary-100 flex items-center justify-center">
               <svg
-                width="36"
-                height="36"
+                width="40"
+                height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 className="text-secondary-700"
@@ -157,47 +157,47 @@ export default function Pemesanan() {
                 />
               </svg>
             </div>
-            <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-secondary-700">
-              [ 03 · selesai ]
+            <p className="mt-8 font-mono text-xs uppercase tracking-[0.3em] text-secondary-700">
+              [ 03 · Done ]
             </p>
-            <h1 className="mt-3 font-display text-display-lg md:text-display-xl font-semibold text-neutral-900 leading-[0.9] tracking-tight">
-              Terima kasih,<br />
+            <h1 className="mt-4 font-display text-display-lg md:text-display-xl font-semibold text-neutral-900 leading-[0.9] tracking-tight">
+              Thank you,<br />
               <span className="italic font-normal text-primary-500">
                 {submitted.name.split(" ")[0]}!
               </span>
             </h1>
-            <p className="mt-4 text-neutral-600 max-w-md mx-auto text-lg">
-              Reservasi kamu berhasil dibuat. Tim Dewrent akan menghubungi via
-              WhatsApp dalam 15 menit untuk konfirmasi.
+            <p className="mt-6 text-neutral-600 max-w-md mx-auto text-lg leading-relaxed">
+              Your reservation is confirmed. The Dewrent team will reach out
+              via WhatsApp within 15 minutes.
             </p>
           </div>
 
-          <div className="mt-10 border border-neutral-200 rounded-lg p-6 md:p-8 bg-neutral-50">
-            <dl className="space-y-4">
+          <div className="mt-12 border border-neutral-200 rounded-lg p-7 md:p-9 bg-neutral-50 space-y-5">
+            <dl className="space-y-5">
               <div className="flex items-baseline justify-between">
-                <dt className="text-sm text-neutral-500 font-mono uppercase tracking-widest">
-                  ID Reservasi
+                <dt className="text-sm text-neutral-500 font-mono uppercase tracking-[0.25em]">
+                  Reservation ID
                 </dt>
                 <dd className="font-mono text-lg font-semibold text-neutral-900">
                   {submitted.id}
                 </dd>
               </div>
               <div className="flex items-baseline justify-between">
-                <dt className="text-sm text-neutral-500 font-mono uppercase tracking-widest">
-                  Metode
+                <dt className="text-sm text-neutral-500 font-mono uppercase tracking-[0.25em]">
+                  Method
                 </dt>
                 <dd className="text-neutral-900 font-medium">
                   {submitted.payment === "transfer" &&
-                    `Transfer ${banks.find((b) => b.key === submitted.bank)?.name}`}
+                    `Bank Transfer · ${banks.find((b) => b.key === submitted.bank)?.name}`}
                   {submitted.payment === "ewallet" &&
-                    `E-Wallet ${ewallets.find((e) => e.key === submitted.ewallet)?.name}`}
+                    `E-Wallet · ${ewallets.find((e) => e.key === submitted.ewallet)?.name}`}
                   {submitted.payment === "qris" && "QRIS"}
-                  {submitted.payment === "cod" && "COD saat pickup"}
+                  {submitted.payment === "cod" && "Cash on pickup"}
                 </dd>
               </div>
-              <div className="flex items-baseline justify-between border-t border-neutral-200 pt-4">
+              <div className="flex items-baseline justify-between border-t border-neutral-200 pt-5">
                 <dt className="font-display text-lg font-semibold text-neutral-900">
-                  Total dibayar
+                  Total paid
                 </dt>
                 <dd className="font-display text-2xl font-semibold text-primary-700 tabular-nums">
                   {formatIDR(submitted.total)}
@@ -206,30 +206,31 @@ export default function Pemesanan() {
             </dl>
 
             {submitted.payment === "transfer" && (
-              <div className="mt-6 pt-6 border-t border-neutral-200">
-                <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2">
-                  [ instruksi transfer ]
+              <div className="pt-6 border-t border-neutral-200 space-y-3">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+                  [ Transfer instructions ]
                 </p>
-                <p className="text-neutral-800">
-                  Transfer ke rekening{" "}
+                <p className="text-neutral-800 leading-relaxed">
+                  Transfer to{" "}
                   <span className="font-semibold">
                     {banks.find((b) => b.key === submitted.bank)?.name}
-                  </span>
-                  :{" "}
+                  </span>{" "}
+                  account{" "}
                   <span className="font-mono font-semibold">
                     {banks.find((b) => b.key === submitted.bank)?.acc}
                   </span>{" "}
-                  a.n. <span className="font-semibold">PT Dewrent Indonesia</span>
+                  under{" "}
+                  <span className="font-semibold">PT Dewrent Indonesia</span>.
                 </p>
-                <p className="mt-2 text-sm text-neutral-500">
-                  Batas waktu: 24 jam. Setelah transfer, kirim bukti ke WA
-                  0812-3456-7890.
+                <p className="text-sm text-neutral-500">
+                  Payment deadline: 24 hours. After transferring, send proof to
+                  WhatsApp +62 812-3456-7890.
                 </p>
               </div>
             )}
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               variant="outline"
               size="lg"
@@ -238,7 +239,7 @@ export default function Pemesanan() {
                 navigate("/");
               }}
             >
-              Kembali ke Home
+              Back to Home
             </Button>
             <Button
               variant="primary"
@@ -248,7 +249,7 @@ export default function Pemesanan() {
                 navigate("/rentals");
               }}
             >
-              Cari rental lagi
+              Browse More
             </Button>
           </div>
         </div>
@@ -257,54 +258,54 @@ export default function Pemesanan() {
   }
 
   return (
-    <section className="pt-32 md:pt-40 pb-20 md:pb-24 bg-white min-h-screen">
+    <section className="pt-36 md:pt-44 pb-24 md:pb-28 bg-white min-h-screen">
       <div className="container-x">
-        <div className="mb-10 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
+        <div className="mb-14 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-              [ 02 · pemesanan ]
+              [ 02 · Checkout ]
             </p>
-            <h1 className="mt-2 font-display text-display-lg md:text-display-xl font-semibold leading-[0.9] tracking-tight text-neutral-900">
-              Lengkapi pemesanan.
+            <h1 className="font-display text-display-lg md:text-display-xl font-semibold leading-[0.9] tracking-tight text-neutral-900">
+              Complete your order.
             </h1>
           </div>
-          <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-widest text-neutral-500">
-            <Link to="/keranjang" className="text-neutral-400 hover:text-neutral-900">
-              1. Keranjang
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500 flex-wrap">
+            <Link to="/cart" className="text-neutral-400 hover:text-neutral-900">
+              1. Cart
             </Link>
             <span className="text-neutral-300">→</span>
-            <span className="text-neutral-900">2. Pemesanan</span>
+            <span className="text-neutral-900">2. Checkout</span>
             <span className="text-neutral-300">→</span>
-            <span className="text-neutral-300">3. Selesai</span>
+            <span className="text-neutral-400">3. Done</span>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid lg:grid-cols-[1fr_400px] gap-8 lg:gap-12">
-          <div className="flex flex-col gap-10">
-            {/* Data Penyewa */}
-            <fieldset className="flex flex-col gap-5">
-              <legend className="flex items-baseline gap-3 mb-3">
+        <form onSubmit={handleSubmit} className="grid lg:grid-cols-[1fr_400px] gap-10 lg:gap-14">
+          <div className="flex flex-col gap-14">
+            {/* Renter details */}
+            <fieldset className="flex flex-col gap-6">
+              <legend className="flex items-baseline gap-4 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
                   [ 01 ]
                 </span>
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
-                  Data Penyewa
+                  Renter Details
                 </span>
               </legend>
               <Input
-                label="Nama lengkap"
+                label="Full name"
                 required
-                placeholder="Nama sesuai KTP"
+                placeholder="Name as on ID card"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 size="lg"
               />
               <div className="grid md:grid-cols-2 gap-5">
                 <Input
-                  label="Nomor WhatsApp"
+                  label="WhatsApp number"
                   required
                   type="tel"
-                  placeholder="08xxxxxxxxxx"
+                  placeholder="+62 812-xxxx-xxxx"
                   value={wa}
                   onChange={(e) => setWa(e.target.value)}
                   size="lg"
@@ -313,25 +314,25 @@ export default function Pemesanan() {
                   label="Email"
                   required
                   type="email"
-                  placeholder="kamu@email.com"
+                  placeholder="you@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   size="lg"
                 />
               </div>
               <Input
-                label="Nomor KTP / SIM"
+                label="ID / Driver license number"
                 required
-                placeholder="Untuk jaminan rental"
-                helper="Data KTP/SIM disimpan aman dan dihapus setelah barang kembali."
-                value={ktp}
-                onChange={(e) => setKtp(e.target.value)}
+                placeholder="For rental deposit verification"
+                helper="Your ID is stored securely and deleted after items are returned."
+                value={id}
+                onChange={(e) => setId(e.target.value)}
                 size="lg"
               />
               <Textarea
-                label="Alamat KTP"
+                label="ID address"
                 required
-                placeholder="Sesuai KTP, untuk verifikasi"
+                placeholder="As on your ID, used for verification"
                 value={addr}
                 onChange={(e) => setAddr(e.target.value)}
                 rows={3}
@@ -339,40 +340,40 @@ export default function Pemesanan() {
             </fieldset>
 
             {/* Pickup / Delivery */}
-            <fieldset className="flex flex-col gap-5">
-              <legend className="flex items-baseline gap-3 mb-3">
+            <fieldset className="flex flex-col gap-6">
+              <legend className="flex items-baseline gap-4 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
                   [ 02 ]
                 </span>
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
-                  Metode Pengambilan
+                  Pickup Method
                 </span>
               </legend>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <PickupOption
                   active={pickup === "pickup"}
                   onClick={() => setPickup("pickup")}
-                  title="Pickup di outlet"
-                  desc="Ambil sendiri di outlet Dewrent"
-                  price="Gratis"
+                  title="Pickup at outlet"
+                  desc="Grab it yourself at a Dewrent outlet"
+                  price="Free"
                 />
                 <PickupOption
                   active={pickup === "delivery"}
                   onClick={() => setPickup("delivery")}
                   title="Delivery"
-                  desc="Kami antar ke lokasi kamu"
-                  price="+ Rp 25.000"
+                  desc="We deliver to your address"
+                  price="+ Rp 25,000"
                 />
               </div>
               {pickup === "pickup" ? (
                 <div className="grid md:grid-cols-2 gap-5">
                   <Select
-                    label="Pilih kota"
+                    label="Select city"
                     required
                     size="lg"
                     value={pickupCity}
                     onChange={(e) => setPickupCity(e.target.value)}
-                    placeholder="Kota"
+                    placeholder="City"
                   >
                     {cities.map((c) => (
                       <option key={c} value={c}>
@@ -381,7 +382,7 @@ export default function Pemesanan() {
                     ))}
                   </Select>
                   <Select
-                    label="Pilih outlet"
+                    label="Select outlet"
                     required
                     size="lg"
                     value={pickupOutlet}
@@ -389,45 +390,48 @@ export default function Pemesanan() {
                     placeholder="Outlet"
                     disabled={!pickupCity}
                   >
-                    <option value="pusat">{pickupCity} — Outlet Pusat</option>
-                    <option value="cabang">{pickupCity} — Cabang Utama</option>
+                    <option value="main">
+                      {pickupCity || "City"} — Main Outlet
+                    </option>
+                    <option value="branch">
+                      {pickupCity || "City"} — Branch
+                    </option>
                   </Select>
                 </div>
               ) : (
                 <Textarea
-                  label="Alamat pengiriman"
+                  label="Delivery address"
                   required
-                  placeholder="Alamat lengkap termasuk patokan"
+                  placeholder="Complete address with landmark"
                   value={deliveryAddr}
                   onChange={(e) => setDeliveryAddr(e.target.value)}
                   rows={3}
-                  helper="Estimasi ongkir sudah termasuk untuk area dalam kota."
+                  helper="Delivery fee applies to areas within city limits."
                 />
               )}
             </fieldset>
 
             {/* Payment */}
-            <fieldset className="flex flex-col gap-5">
-              <legend className="flex items-baseline gap-3 mb-3">
+            <fieldset className="flex flex-col gap-6">
+              <legend className="flex items-baseline gap-4 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
                   [ 03 ]
                 </span>
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
-                  Metode Pembayaran
+                  Payment Method
                 </span>
               </legend>
 
-              <div className="flex flex-col gap-3">
-                {/* Transfer Bank */}
+              <div className="flex flex-col gap-4">
                 <PaymentOption
                   active={payment === "transfer"}
                   onClick={() => setPayment("transfer")}
-                  title="Transfer Bank"
+                  title="Bank Transfer"
                   desc="BCA / Mandiri / BNI / BRI"
                   icon="🏦"
                 >
                   {payment === "transfer" && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 pt-3">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-4">
                       {banks.map((b) => (
                         <button
                           key={b.key}
@@ -450,7 +454,6 @@ export default function Pemesanan() {
                   )}
                 </PaymentOption>
 
-                {/* E-Wallet */}
                 <PaymentOption
                   active={payment === "ewallet"}
                   onClick={() => setPayment("ewallet")}
@@ -459,7 +462,7 @@ export default function Pemesanan() {
                   icon="📱"
                 >
                   {payment === "ewallet" && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 pt-3">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-4">
                       {ewallets.map((w) => (
                         <button
                           key={w.key}
@@ -486,46 +489,46 @@ export default function Pemesanan() {
                   active={payment === "qris"}
                   onClick={() => setPayment("qris")}
                   title="QRIS"
-                  desc="Satu QR untuk semua e-wallet & mobile banking"
+                  desc="One QR for all e-wallets & mobile banking"
                   icon="◉"
                 />
 
                 <PaymentOption
                   active={payment === "cod"}
                   onClick={() => setPayment("cod")}
-                  title="COD saat pickup"
-                  desc="Bayar tunai atau kartu di outlet saat ambil barang"
+                  title="Cash on Pickup"
+                  desc="Pay with cash or card at the outlet"
                   icon="💵"
                 />
               </div>
             </fieldset>
 
-            {/* Extra */}
-            <fieldset className="flex flex-col gap-5">
-              <legend className="flex items-baseline gap-3 mb-3">
+            {/* Extras */}
+            <fieldset className="flex flex-col gap-6">
+              <legend className="flex items-baseline gap-4 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
                   [ 04 ]
                 </span>
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
-                  Catatan & Promo
+                  Notes & Promo
                 </span>
               </legend>
               <Textarea
-                label="Catatan tambahan"
+                label="Extra notes"
                 optional
-                placeholder="Ada request khusus? Tulis di sini."
+                placeholder="Any special requests? Write here."
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 rows={3}
               />
-              <div>
-                <label className="text-sm font-medium text-neutral-700 mb-2 block">
-                  Kode promo
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-neutral-700 block">
+                  Promo code
                 </label>
                 <div className="flex gap-3">
                   <input
                     type="text"
-                    placeholder="Contoh: DEWRENT10"
+                    placeholder="Try: DEWRENT10"
                     value={promo}
                     onChange={(e) => setPromo(e.target.value)}
                     className="flex-1 h-14 px-4 rounded-md border-[1.5px] border-neutral-200 text-[15px] focus:outline-none focus:border-primary-500 focus:shadow-focus-primary"
@@ -536,81 +539,82 @@ export default function Pemesanan() {
                     size="md"
                     onClick={applyPromo}
                   >
-                    Pakai
+                    Apply
                   </Button>
                 </div>
                 {appliedPromo > 0 && (
-                  <p className="mt-2 text-sm text-success-700 font-medium">
-                    ✓ Promo aktif: hemat {formatIDR(appliedPromo)}
+                  <p className="text-sm text-success-700 font-medium">
+                    ✓ Promo applied: saved {formatIDR(appliedPromo)}
                   </p>
                 )}
               </div>
             </fieldset>
 
-            {/* Consent */}
-            <div className="flex flex-col gap-3 py-6 border-y border-neutral-200">
-              <label className="flex items-start gap-3 cursor-pointer">
+            <div className="flex flex-col gap-4 py-7 border-y border-neutral-200">
+              <label className="flex items-start gap-4 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={agreedTos}
                   onChange={(e) => setAgreedTos(e.target.checked)}
-                  className="mt-1 w-5 h-5 accent-primary-500"
+                  className="mt-1 w-5 h-5 accent-primary-500 flex-shrink-0"
                   required
                 />
-                <span className="text-sm text-neutral-700">
-                  Saya setuju dengan{" "}
+                <span className="text-sm text-neutral-700 leading-relaxed">
+                  I agree to the{" "}
                   <a href="#" className="underline text-primary-600">
-                    Syarat & Ketentuan Rental
+                    Rental Terms &amp; Conditions
                   </a>{" "}
-                  serta{" "}
+                  and{" "}
                   <a href="#" className="underline text-primary-600">
-                    Kebijakan Deposit
+                    Deposit Policy
                   </a>{" "}
-                  Dewrent.
+                  of Dewrent.
                 </span>
               </label>
-              <label className="flex items-start gap-3 cursor-pointer">
+              <label className="flex items-start gap-4 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={wantUpdate}
                   onChange={(e) => setWantUpdate(e.target.checked)}
-                  className="mt-1 w-5 h-5 accent-primary-500"
+                  className="mt-1 w-5 h-5 accent-primary-500 flex-shrink-0"
                 />
-                <span className="text-sm text-neutral-700">
-                  Kirim update via WhatsApp untuk konfirmasi dan pengingat
-                  pengembalian.
+                <span className="text-sm text-neutral-700 leading-relaxed">
+                  Send updates via WhatsApp for confirmation and return
+                  reminders.
                 </span>
               </label>
             </div>
 
-            <Button
-              type="submit"
-              variant="primary"
-              size="xl"
-              fullWidth
-              disabled={!canSubmit}
-            >
-              Konfirmasi Pemesanan · {formatIDR(total)}
-            </Button>
-            {!canSubmit && (
-              <p className="text-xs text-neutral-500 text-center">
-                Lengkapi semua field wajib dan setujui syarat & ketentuan.
-              </p>
-            )}
+            <div className="space-y-3">
+              <Button
+                type="submit"
+                variant="primary"
+                size="xl"
+                fullWidth
+                disabled={!canSubmit}
+              >
+                Confirm Order · {formatIDR(total)}
+              </Button>
+              {!canSubmit && (
+                <p className="text-xs text-neutral-500 text-center leading-relaxed">
+                  Fill in all required fields and agree to the terms &amp;
+                  conditions.
+                </p>
+              )}
+            </div>
           </div>
 
-          {/* Summary */}
           <aside className="lg:sticky lg:top-32 self-start border border-neutral-200 rounded-lg overflow-hidden">
-            <div className="bg-primary-50 p-5 border-b border-primary-100">
+            <div className="bg-primary-50 p-6 border-b border-primary-100">
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-700">
-                [ ringkasan pesanan ]
+                [ Order Summary ]
               </p>
-              <p className="mt-1 text-sm text-primary-700/70">
-                {lines.length} item · {lines.reduce((s, l) => s + l.quantity, 0)}{" "}
-                unit
+              <p className="mt-2 text-sm text-primary-700/70">
+                {lines.length} {lines.length === 1 ? "item" : "items"} ·{" "}
+                {lines.reduce((s, l) => s + l.quantity, 0)} units
               </p>
             </div>
-            <div className="p-5 space-y-4 max-h-96 overflow-y-auto">
+            <div className="p-6 space-y-5 max-h-96 overflow-y-auto">
               {lines.map((l) => {
                 const days = Math.max(
                   1,
@@ -621,20 +625,20 @@ export default function Pemesanan() {
                   ),
                 );
                 return (
-                  <div key={l.item.id} className="flex gap-3">
+                  <div key={l.item.id} className="flex gap-4">
                     <img
                       src={l.item.images[0]}
                       alt={l.item.name}
                       className="w-16 h-20 rounded-md object-cover bg-neutral-100 flex-shrink-0"
                     />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-neutral-900 truncate">
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <p className="text-sm font-semibold text-neutral-900 truncate leading-snug">
                         {l.item.name}
                       </p>
-                      <p className="text-xs text-neutral-500 mt-0.5">
-                        {days} hari × {l.quantity} unit
+                      <p className="text-xs text-neutral-500">
+                        {days} {days === 1 ? "day" : "days"} · {l.quantity} unit
                       </p>
-                      <p className="text-sm font-mono font-semibold text-neutral-900 tabular-nums mt-1">
+                      <p className="text-sm font-mono font-semibold text-neutral-900 tabular-nums">
                         {formatIDR(l.item.pricePerDay * l.quantity * days)}
                       </p>
                     </div>
@@ -642,7 +646,7 @@ export default function Pemesanan() {
                 );
               })}
             </div>
-            <div className="p-5 border-t border-neutral-200 space-y-2 text-sm bg-neutral-50">
+            <div className="p-6 border-t border-neutral-200 space-y-3 text-sm bg-neutral-50">
               <div className="flex justify-between">
                 <span className="text-neutral-600">Subtotal</span>
                 <span className="font-mono tabular-nums">
@@ -650,7 +654,7 @@ export default function Pemesanan() {
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-600">Ongkir</span>
+                <span className="text-neutral-600">Delivery</span>
                 <span className="font-mono tabular-nums">
                   {formatIDR(deliveryFee)}
                 </span>
@@ -669,16 +673,16 @@ export default function Pemesanan() {
                   {formatIDR(totalDeposit)}
                 </span>
               </div>
-              <div className="pt-3 border-t border-neutral-200 flex justify-between items-baseline">
+              <div className="pt-4 border-t border-neutral-200 flex justify-between items-baseline gap-3">
                 <span className="font-display text-base font-semibold text-neutral-900">
-                  Total bayar
+                  Total due
                 </span>
                 <span className="font-display text-2xl font-semibold text-primary-700 tabular-nums">
                   {formatIDR(total)}
                 </span>
               </div>
-              <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-widest pt-2">
-                [ Deposit dikembalikan setelah barang balik utuh ]
+              <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-[0.25em] pt-3 leading-relaxed">
+                [ Deposit refunded when items return in good condition ]
               </p>
             </div>
           </aside>
@@ -706,22 +710,22 @@ function PickupOption({
       type="button"
       onClick={onClick}
       className={cn(
-        "text-left p-5 rounded-lg border-[1.5px] transition-all",
+        "text-left p-6 rounded-lg border-[1.5px] transition-all",
         active
           ? "border-primary-500 bg-primary-50 shadow-focus-primary"
           : "border-neutral-200 bg-white hover:border-neutral-400",
       )}
     >
       <div className="flex items-baseline justify-between gap-3">
-        <div>
-          <p className="font-display text-lg font-semibold text-neutral-900">
+        <div className="space-y-1.5">
+          <p className="font-display text-lg font-semibold text-neutral-900 leading-tight">
             {title}
           </p>
-          <p className="mt-1 text-sm text-neutral-600">{desc}</p>
+          <p className="text-sm text-neutral-600 leading-relaxed">{desc}</p>
         </div>
         <span
           className={cn(
-            "text-xs font-mono uppercase tracking-widest whitespace-nowrap",
+            "text-xs font-mono uppercase tracking-[0.25em] whitespace-nowrap",
             active ? "text-primary-700" : "text-neutral-500",
           )}
         >
@@ -751,16 +755,16 @@ function PaymentOption({
     <div
       onClick={onClick}
       className={cn(
-        "p-5 rounded-lg border-[1.5px] cursor-pointer transition-all",
+        "p-6 rounded-lg border-[1.5px] cursor-pointer transition-all",
         active
           ? "border-primary-500 bg-primary-50/50"
           : "border-neutral-200 bg-white hover:border-neutral-400",
       )}
     >
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-5">
         <div
           className={cn(
-            "w-11 h-11 rounded-md flex items-center justify-center text-xl",
+            "w-12 h-12 rounded-md flex items-center justify-center text-xl flex-shrink-0",
             active
               ? "bg-primary-500 text-white"
               : "bg-neutral-100 text-neutral-500",
@@ -768,15 +772,15 @@ function PaymentOption({
         >
           <span>{icon}</span>
         </div>
-        <div className="flex-1">
-          <p className="font-display text-lg font-semibold text-neutral-900">
+        <div className="flex-1 min-w-0 space-y-1">
+          <p className="font-display text-lg font-semibold text-neutral-900 leading-tight">
             {title}
           </p>
-          <p className="text-sm text-neutral-500 mt-0.5">{desc}</p>
+          <p className="text-sm text-neutral-500 leading-relaxed">{desc}</p>
         </div>
         <div
           className={cn(
-            "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors",
+            "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors flex-shrink-0",
             active ? "border-primary-500 bg-primary-500" : "border-neutral-300",
           )}
         >

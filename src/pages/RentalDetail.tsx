@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { findItem, items as allItems } from "@/data/items";
 import { useCart } from "@/contexts/CartContext";
 import { formatIDR } from "@/lib/format";
@@ -46,55 +46,55 @@ export default function RentalDetail() {
   const handleAdd = (goCart: boolean) => {
     addLine({ item, quantity: qty, startDate, endDate });
     if (goCart) {
-      setTimeout(() => navigate("/keranjang"), 300);
+      setTimeout(() => navigate("/cart"), 300);
     }
   };
 
   return (
     <>
-      {/* Breadcrumb */}
-      <div className="pt-32 md:pt-40 pb-4 bg-white">
-        <div className="container-x flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-neutral-500">
-          <a href="/rentals" className="hover:text-neutral-900">Rentals</a>
+      <div className="pt-36 md:pt-44 pb-6 bg-white">
+        <div className="container-x flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500 flex-wrap">
+          <Link to="/rentals" className="hover:text-neutral-900">
+            Rentals
+          </Link>
           <span>/</span>
-          <a
-            href={`/rentals?cat=${item.category}`}
+          <Link
+            to={`/rentals?cat=${item.category}`}
             className="hover:text-neutral-900"
           >
             {item.categoryName}
-          </a>
+          </Link>
           <span>/</span>
-          <span className="text-neutral-900">{item.name}</span>
+          <span className="text-neutral-900 truncate">{item.name}</span>
         </div>
       </div>
 
-      <section className="py-8 md:py-12 bg-white">
-        <div className="container-x grid lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Gallery */}
-          <div className="flex flex-col gap-4">
+      <section className="py-10 md:py-14 bg-white">
+        <div className="container-x grid lg:grid-cols-2 gap-10 lg:gap-20">
+          <div className="flex flex-col gap-5">
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-neutral-100">
               <img
                 src={item.images[activeImg]}
                 alt={item.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+              <div className="absolute top-5 left-5 flex flex-col gap-2">
                 {item.newDrop && (
-                  <span className="inline-flex items-center px-3 py-1 bg-secondary-500 text-neutral-900 rounded-full text-[11px] font-mono uppercase tracking-widest font-semibold">
-                    new drop
+                  <span className="inline-flex items-center px-3 py-1.5 bg-secondary-500 text-neutral-900 rounded-full text-[11px] font-mono uppercase tracking-[0.25em] font-semibold">
+                    New Drop
                   </span>
                 )}
                 {item.bestseller && (
-                  <span className="inline-flex items-center px-3 py-1 bg-primary-500 text-white rounded-full text-[11px] font-mono uppercase tracking-widest font-semibold">
-                    bestseller
+                  <span className="inline-flex items-center px-3 py-1.5 bg-primary-500 text-white rounded-full text-[11px] font-mono uppercase tracking-[0.25em] font-semibold">
+                    Bestseller
                   </span>
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-3">
-              {item.images.map((img, i) => (
+            <div className="grid grid-cols-4 gap-4">
+              {item.images.map((image, i) => (
                 <button
-                  key={img}
+                  key={image + i}
                   onClick={() => setActiveImg(i)}
                   className={`aspect-square rounded-md overflow-hidden border-2 transition-all ${
                     activeImg === i
@@ -102,55 +102,53 @@ export default function RentalDetail() {
                       : "border-transparent opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={image} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Info */}
-          <div className="flex flex-col gap-6">
-            <div>
-              <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-neutral-500">
+          <div className="flex flex-col gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 flex-wrap">
                 <span>[ {item.categoryName} ]</span>
                 <span>·</span>
-                <span>{item.cities.length} kota</span>
+                <span>{item.cities.length} cities</span>
               </div>
-              <h1 className="mt-2 font-display text-display-md md:text-display-lg font-semibold leading-[0.95] tracking-tight text-neutral-900">
+              <h1 className="font-display text-display-md md:text-display-lg font-semibold leading-[0.95] tracking-tight text-neutral-900">
                 {item.name}
               </h1>
-              <p className="mt-4 text-neutral-700 text-lg leading-relaxed">
+              <p className="text-neutral-700 text-lg leading-relaxed">
                 {item.short}
               </p>
             </div>
 
-            <div className="flex items-baseline gap-6 py-6 border-y border-neutral-200">
+            <div className="flex items-baseline gap-8 py-7 border-y border-neutral-200">
               <div>
-                <p className="font-mono text-xs uppercase tracking-widest text-neutral-500">
-                  [ harga rental ]
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+                  [ Rental price ]
                 </p>
-                <p className="font-display text-4xl md:text-5xl font-semibold text-neutral-900 tabular-nums mt-1">
+                <p className="font-display text-4xl md:text-5xl font-semibold text-neutral-900 tabular-nums mt-2 leading-none">
                   {formatIDR(item.pricePerDay)}
                 </p>
-                <p className="text-sm text-neutral-500 mt-1">per hari</p>
+                <p className="text-sm text-neutral-500 mt-2">per day</p>
               </div>
               <div className="flex-1" />
               <div className="text-right">
-                <p className="font-mono text-xs uppercase tracking-widest text-neutral-500">
-                  [ deposit ]
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+                  [ Deposit ]
                 </p>
-                <p className="font-mono text-lg font-semibold text-neutral-900 mt-1 tabular-nums">
+                <p className="font-mono text-lg font-semibold text-neutral-900 mt-2 tabular-nums">
                   {formatIDR(item.deposit)}
                 </p>
                 <p className="text-xs text-neutral-500 mt-1">refundable</p>
               </div>
             </div>
 
-            {/* Rental period */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <Input
                 type="date"
-                label="Tanggal mulai"
+                label="Start date"
                 size="lg"
                 min={isoToday()}
                 value={startDate}
@@ -158,7 +156,7 @@ export default function RentalDetail() {
               />
               <Input
                 type="date"
-                label="Tanggal selesai"
+                label="End date"
                 size="lg"
                 min={startDate}
                 value={endDate}
@@ -166,14 +164,13 @@ export default function RentalDetail() {
               />
             </div>
 
-            {/* Quantity */}
             <div>
-              <p className="text-sm font-medium text-neutral-700 mb-2">Jumlah</p>
+              <p className="text-sm font-medium text-neutral-700 mb-2">Quantity</p>
               <div className="inline-flex items-center border-[1.5px] border-neutral-200 rounded-md overflow-hidden">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
                   className="w-14 h-14 flex items-center justify-center text-2xl text-neutral-700 hover:bg-neutral-100"
-                  aria-label="Kurangi"
+                  aria-label="Decrease"
                 >
                   −
                 </button>
@@ -183,37 +180,35 @@ export default function RentalDetail() {
                 <button
                   onClick={() => setQty((q) => Math.min(10, q + 1))}
                   className="w-14 h-14 flex items-center justify-center text-2xl text-neutral-700 hover:bg-neutral-100"
-                  aria-label="Tambah"
+                  aria-label="Increase"
                 >
                   +
                 </button>
               </div>
             </div>
 
-            {/* Total */}
-            <div className="rounded-lg bg-primary-50 border border-primary-100 p-5 flex items-baseline justify-between">
+            <div className="rounded-lg bg-primary-50 border border-primary-100 p-6 flex items-baseline justify-between gap-4">
               <div>
-                <p className="font-mono text-xs uppercase tracking-widest text-primary-700">
-                  [ subtotal · {days} hari × qty {qty} ]
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary-700">
+                  [ Subtotal · {days} {days === 1 ? "day" : "days"} × Qty {qty} ]
                 </p>
-                <p className="text-xs text-primary-700/70 mt-1">
-                  Deposit dan ongkir dihitung di pemesanan
+                <p className="text-xs text-primary-700/70 mt-1.5 leading-relaxed">
+                  Deposit and shipping calculated at checkout
                 </p>
               </div>
-              <p className="font-display text-3xl font-semibold text-primary-800 tabular-nums">
+              <p className="font-display text-3xl font-semibold text-primary-800 tabular-nums whitespace-nowrap">
                 {formatIDR(totalRental)}
               </p>
             </div>
 
-            {/* CTA */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Button
                 variant="secondary"
                 size="lg"
                 fullWidth
                 onClick={() => handleAdd(false)}
               >
-                Tambah ke Bag
+                Add to Bag
               </Button>
               <Button
                 variant="primary"
@@ -221,27 +216,26 @@ export default function RentalDetail() {
                 fullWidth
                 onClick={() => handleAdd(true)}
               >
-                Rent Sekarang
+                Rent Now
               </Button>
             </div>
 
-            {/* Spec table */}
-            <div className="mt-4">
-              <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3">
-                [ spesifikasi & isi paket ]
+            <div className="mt-6">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4">
+                [ Specifications & kit ]
               </p>
               <dl className="divide-y divide-neutral-200 border-y border-neutral-200">
                 {item.spec.map((s) => (
-                  <div key={s.label} className="grid grid-cols-3 py-3">
-                    <dt className="text-sm text-neutral-500 font-mono uppercase tracking-widest">
+                  <div key={s.label} className="grid grid-cols-3 py-4 gap-4">
+                    <dt className="text-sm text-neutral-500 font-mono uppercase tracking-[0.25em]">
                       {s.label}
                     </dt>
                     <dd className="col-span-2 text-neutral-800">{s.value}</dd>
                   </div>
                 ))}
-                <div className="grid grid-cols-3 py-3">
-                  <dt className="text-sm text-neutral-500 font-mono uppercase tracking-widest">
-                    Kota
+                <div className="grid grid-cols-3 py-4 gap-4">
+                  <dt className="text-sm text-neutral-500 font-mono uppercase tracking-[0.25em]">
+                    Cities
                   </dt>
                   <dd className="col-span-2 text-neutral-800">
                     {item.cities.join(", ")}
@@ -253,21 +247,20 @@ export default function RentalDetail() {
         </div>
       </section>
 
-      {/* Related */}
       {related.length > 0 && (
-        <section className="py-16 md:py-24 bg-neutral-50">
+        <section className="py-20 md:py-32 bg-neutral-50">
           <div className="container-x">
-            <div className="flex items-baseline justify-between mb-8 md:mb-10">
+            <div className="flex items-baseline justify-between mb-10 md:mb-12">
               <div>
-                <p className="font-mono text-xs uppercase tracking-widest text-neutral-500">
-                  [ related · {item.categoryName} ]
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+                  [ Related · {item.categoryName} ]
                 </p>
-                <h2 className="mt-2 font-display text-display-md font-semibold text-neutral-900 leading-tight">
-                  Kamu mungkin juga suka
+                <h2 className="mt-3 font-display text-display-md font-semibold text-neutral-900 leading-tight">
+                  You might also like
                 </h2>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {related.map((r, i) => (
                 <ItemCard key={r.id} item={r} index={i} />
               ))}

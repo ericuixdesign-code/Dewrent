@@ -45,14 +45,13 @@ export function CartDrawer() {
           isDrawerOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-neutral-200">
-          <div>
-            <p className="font-display text-2xl font-semibold text-neutral-900">
-              your bag
+        <div className="flex items-center justify-between px-7 pt-7 pb-5 border-b border-neutral-200">
+          <div className="flex flex-col gap-1.5">
+            <p className="font-display text-2xl font-semibold text-neutral-900 leading-tight">
+              Your Bag
             </p>
-            <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-1">
-              [ {totalItems} - {totalItems === 1 ? "Item" : "Items"} ]
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+              [ {totalItems} · {totalItems === 1 ? "Item" : "Items"} ]
             </p>
           </div>
           <button
@@ -71,11 +70,10 @@ export function CartDrawer() {
           </button>
         </div>
 
-        {/* Body */}
         {lines.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-6">
-            <div className="w-24 h-24 rounded-full bg-primary-50 flex items-center justify-center">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+          <div className="flex-1 flex flex-col items-center justify-center px-7 text-center gap-7">
+            <div className="w-28 h-28 rounded-full bg-primary-50 flex items-center justify-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M3 6h2l3 12h11l3-9H6M9 20a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2z"
                   stroke="currentColor"
@@ -86,13 +84,12 @@ export function CartDrawer() {
                 />
               </svg>
             </div>
-            <div>
-              <p className="font-display text-xl font-semibold text-neutral-900">
-                Keranjang masih kosong
+            <div className="space-y-3">
+              <p className="font-display text-2xl font-semibold text-neutral-900 leading-tight">
+                Your bag is empty
               </p>
-              <p className="text-sm text-neutral-500 mt-2 max-w-xs">
-                Yuk mulai jelajahi koleksi rental dan pilih barang yang kamu
-                butuhkan.
+              <p className="text-sm text-neutral-500 max-w-xs mx-auto leading-relaxed">
+                Start browsing the rental collection and add the items you need.
               </p>
             </div>
             <Button
@@ -102,12 +99,12 @@ export function CartDrawer() {
               size="md"
               onClick={closeDrawer}
             >
-              Continue shopping
+              Continue Shopping
             </Button>
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-6 py-4">
+            <div className="flex-1 overflow-y-auto px-7 py-5">
               <ul className="flex flex-col divide-y divide-neutral-200">
                 {lines.map((l) => {
                   const days = Math.max(
@@ -119,25 +116,25 @@ export function CartDrawer() {
                     ) || 1,
                   );
                   return (
-                    <li key={l.item.id} className="flex gap-4 py-4">
+                    <li key={l.item.id} className="flex gap-5 py-5">
                       <img
                         src={l.item.images[0]}
                         alt={l.item.name}
                         className="w-24 h-28 rounded-md object-cover bg-neutral-100 flex-shrink-0"
                       />
-                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                      <div className="flex-1 flex flex-col gap-2 min-w-0">
                         <Link
                           to={`/rental/${l.item.slug}`}
                           onClick={closeDrawer}
-                          className="font-display text-base font-semibold text-neutral-900 truncate hover:text-primary-600"
+                          className="font-display text-base font-semibold text-neutral-900 truncate hover:text-primary-600 leading-snug"
                         >
                           {l.item.name}
                         </Link>
-                        <p className="text-xs text-neutral-500 font-mono uppercase tracking-widest">
+                        <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-[0.25em]">
                           {l.item.categoryName}
                         </p>
-                        <p className="text-xs text-neutral-600 mt-1">
-                          {days} hari × Qty {l.quantity}
+                        <p className="text-xs text-neutral-600">
+                          {days} {days === 1 ? "day" : "days"} · Qty {l.quantity}
                         </p>
                         <div className="flex items-baseline justify-between mt-auto pt-2">
                           <span className="font-mono text-sm font-semibold text-neutral-900 tabular-nums">
@@ -145,9 +142,9 @@ export function CartDrawer() {
                           </span>
                           <button
                             onClick={() => removeLine(l.item.id)}
-                            className="text-xs text-neutral-400 hover:text-danger-500 uppercase tracking-widest font-mono"
+                            className="text-[11px] text-neutral-400 hover:text-danger-500 uppercase tracking-[0.25em] font-mono"
                           >
-                            [ remove ]
+                            [ Remove ]
                           </button>
                         </div>
                       </div>
@@ -157,25 +154,25 @@ export function CartDrawer() {
               </ul>
             </div>
 
-            <div className="border-t border-neutral-200 px-6 py-5 space-y-4 bg-neutral-50">
+            <div className="border-t border-neutral-200 px-7 py-6 space-y-4 bg-neutral-50">
               <div className="flex items-baseline justify-between">
-                <span className="text-sm text-neutral-600">Subtotal rental</span>
+                <span className="text-sm text-neutral-600">Rental subtotal</span>
                 <span className="font-mono text-lg font-semibold text-neutral-900 tabular-nums">
                   {formatIDR(subtotal)}
                 </span>
               </div>
-              <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-widest">
-                [ Deposit refundable + ongkir dihitung di pemesanan ]
+              <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-[0.25em] leading-relaxed">
+                [ Deposit refundable + shipping calculated at checkout ]
               </p>
               <Button
                 as="link"
-                to="/keranjang"
+                to="/cart"
                 variant="primary"
                 size="lg"
                 fullWidth
                 onClick={closeDrawer}
               >
-                Lanjut ke Keranjang
+                View Cart
               </Button>
               <Button
                 as="link"
@@ -185,7 +182,7 @@ export function CartDrawer() {
                 fullWidth
                 onClick={closeDrawer}
               >
-                Continue shopping
+                Continue Shopping
               </Button>
             </div>
           </>

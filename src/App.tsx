@@ -12,8 +12,8 @@ import { SearchOverlay } from "@/components/layout/SearchOverlay";
 import Home from "@/pages/Home";
 import Rentals from "@/pages/Rentals";
 import RentalDetail from "@/pages/RentalDetail";
-import Keranjang from "@/pages/Keranjang";
-import Pemesanan from "@/pages/Pemesanan";
+import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
 import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
 
@@ -43,8 +43,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/rentals" element={<Rentals />} />
           <Route path="/rental/:slug" element={<RentalDetail />} />
-          <Route path="/keranjang" element={<Keranjang />} />
-          <Route path="/pemesanan" element={<Pemesanan />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

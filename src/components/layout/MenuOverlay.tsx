@@ -4,10 +4,10 @@ import { useCart } from "@/contexts/CartContext";
 import { cn } from "@/lib/cn";
 
 const items = [
-  { num: "01", label: "Semua Rental", to: "/rentals" },
-  { num: "02", label: "Kategori", action: "categories" as const },
-  { num: "03", label: "Keranjang", to: "/keranjang" },
-  { num: "04", label: "Who we are", to: "/about" },
+  { num: "01", label: "All Rentals", to: "/rentals" },
+  { num: "02", label: "Categories", action: "categories" as const },
+  { num: "03", label: "Cart", to: "/cart" },
+  { num: "04", label: "Who We Are", to: "/about" },
   { num: "05", label: "Contact", to: "/about#contact" },
 ];
 
@@ -35,23 +35,21 @@ export function MenuOverlay() {
       )}
       aria-hidden={!isMenuOpen}
     >
-      {/* Backdrop */}
       <div
         onClick={closeMenu}
-        className="absolute inset-0 bg-primary-950/80 backdrop-blur-xl"
+        className="absolute inset-0 bg-primary-950/85 backdrop-blur-xl"
       />
 
-      {/* Panel */}
       <div
         className={cn(
-          "relative h-full w-full flex flex-col justify-between",
+          "relative h-full w-full flex flex-col justify-between overflow-y-auto",
           "transition-transform duration-700 ease-out",
           isMenuOpen ? "translate-y-0" : "-translate-y-8",
         )}
       >
-        <div className="container-x flex items-center justify-between pt-6 pb-4">
+        <div className="container-x flex items-center justify-between pt-8 pb-6">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/60">
-            [ menu ] · 05 items
+            [ Menu · 05 items ]
           </span>
           <button
             onClick={closeMenu}
@@ -69,19 +67,19 @@ export function MenuOverlay() {
           </button>
         </div>
 
-        <ul className="flex-1 flex flex-col justify-center container-x">
-          {items.map((it, i) => {
-            const content = (
-              <div className="group flex items-center justify-between py-4 md:py-6 border-b border-white/15 hover:border-white/50 transition-colors">
-                <div className="flex items-center gap-6 md:gap-10">
+        <ul className="flex-1 flex flex-col justify-center container-x py-8">
+          {items.map((it) => {
+            const inner = (
+              <div className="group flex items-center justify-between py-5 md:py-7 border-b border-white/15 hover:border-white/50 transition-colors">
+                <div className="flex items-center gap-6 md:gap-12">
                   <span className="font-mono text-sm md:text-base text-white/40 tabular-nums">
                     [ {it.num} ]
                   </span>
-                  <span className="font-display text-4xl md:text-6xl lg:text-7xl text-white font-semibold tracking-tight group-hover:text-secondary-400 transition-colors">
+                  <span className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-semibold tracking-tight leading-none group-hover:text-secondary-400 transition-colors">
                     {it.label}
                   </span>
                 </div>
-                <span className="hidden md:inline-block font-mono text-white/40 group-hover:text-secondary-400 group-hover:translate-x-2 transition-all">
+                <span className="hidden md:inline-block font-mono text-white/40 group-hover:text-secondary-400 group-hover:translate-x-2 transition-all text-2xl">
                   →
                 </span>
               </div>
@@ -95,11 +93,8 @@ export function MenuOverlay() {
                       setTimeout(openCategories, 300);
                     }}
                     className="w-full text-left"
-                    style={{
-                      transitionDelay: `${i * 60}ms`,
-                    }}
                   >
-                    {content}
+                    {inner}
                   </button>
                 </li>
               );
@@ -107,17 +102,17 @@ export function MenuOverlay() {
             return (
               <li key={it.num}>
                 <Link to={it.to!} onClick={closeMenu}>
-                  {content}
+                  {inner}
                 </Link>
               </li>
             );
           })}
         </ul>
 
-        <div className="container-x py-6 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 text-white/60 font-mono text-xs uppercase tracking-widest">
-          <div className="flex flex-col gap-2">
-            <span className="text-white/40">[ hubs ]</span>
-            <div className="flex flex-wrap gap-3 text-white">
+        <div className="container-x py-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-10 text-white/60 font-mono text-xs uppercase tracking-[0.2em]">
+          <div className="flex flex-col gap-3">
+            <span className="text-white/40">[ Hubs ]</span>
+            <div className="flex flex-wrap gap-x-3 gap-y-2 text-white">
               <span>Jakarta</span>
               <span className="text-white/30">/</span>
               <span>Bandung</span>
@@ -129,7 +124,7 @@ export function MenuOverlay() {
               <span>Surabaya</span>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <a href="#" className="hover:text-secondary-400">Instagram</a>
             <a href="#" className="hover:text-secondary-400">TikTok</a>
             <a href="#" className="hover:text-secondary-400">WhatsApp</a>

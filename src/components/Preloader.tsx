@@ -44,7 +44,7 @@ export function Preloader({ onDone }: { onDone?: () => void }) {
         )}
       />
       <div className="relative text-white">
-        <div className="flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center gap-10">
           <div className="flex items-center gap-3">
             {[0, 1, 2].map((i) => (
               <span
@@ -54,7 +54,7 @@ export function Preloader({ onDone }: { onDone?: () => void }) {
               />
             ))}
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/50">
               Loading
             </span>
@@ -63,7 +63,7 @@ export function Preloader({ onDone }: { onDone?: () => void }) {
               <span className="text-secondary-500 ml-1">%</span>
             </span>
           </div>
-          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-white/40">
+          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.3em] text-white/40">
             <span className="opacity-60">[</span>
             <span>Rent everything · Own the moment</span>
             <span className="opacity-60">]</span>

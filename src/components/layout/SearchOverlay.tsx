@@ -56,17 +56,17 @@ export function SearchOverlay() {
     >
       <div
         onClick={closeSearch}
-        className="absolute inset-0 bg-primary-950/70 backdrop-blur-lg"
+        className="absolute inset-0 bg-primary-950/75 backdrop-blur-lg"
       />
       <div
         className={cn(
-          "relative container-x pt-24 md:pt-32 pb-8 flex flex-col gap-6 max-h-screen overflow-y-auto",
+          "relative container-x pt-28 md:pt-36 pb-10 flex flex-col gap-8 max-h-screen overflow-y-auto",
           "transition-transform duration-500 ease-out",
           isSearchOpen ? "translate-y-0" : "-translate-y-8",
         )}
       >
-        <div className="flex items-center gap-4 border-b-2 border-white/40 pb-4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white/60 flex-shrink-0">
+        <div className="flex items-center gap-4 md:gap-6 border-b-2 border-white/40 pb-5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-white/60 flex-shrink-0">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
             <path
               d="M21 21l-4.35-4.35"
@@ -79,15 +79,15 @@ export function SearchOverlay() {
             id="search-input"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Cari camera, tenda, PS5, gitar..."
-            className="flex-1 bg-transparent text-white text-2xl md:text-4xl font-display font-semibold placeholder:text-white/30 outline-none border-none"
+            placeholder="Search cameras, tents, PS5, guitars..."
+            className="flex-1 bg-transparent text-white text-xl md:text-3xl lg:text-4xl font-display font-semibold placeholder:text-white/30 outline-none border-none min-w-0"
           />
           <button
             onClick={closeSearch}
-            className="text-white/60 hover:text-white p-2"
+            className="text-white/60 hover:text-white p-2 flex-shrink-0"
             aria-label="Close"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6l12 12"
                 stroke="currentColor"
@@ -99,17 +99,17 @@ export function SearchOverlay() {
         </div>
 
         {query.trim() === "" && (
-          <div className="flex flex-col gap-4 text-white">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-white/40">
-              [ trending ]
+          <div className="flex flex-col gap-5 text-white">
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/40">
+              [ Trending ]
             </p>
-            <div className="flex flex-wrap gap-2">
-              {["Tenda", "Kamera", "PS5", "Vespa", "Kebaya", "Proyektor"].map(
+            <div className="flex flex-wrap gap-2.5">
+              {["Tent", "Camera", "PS5", "Scooter", "Suit", "Projector"].map(
                 (t) => (
                   <button
                     key={t}
                     onClick={() => setQuery(t)}
-                    className="px-4 py-2 border border-white/20 rounded-full text-sm text-white/80 hover:bg-white hover:text-primary-900 transition-colors"
+                    className="px-5 py-2.5 border border-white/20 rounded-full text-sm text-white/80 hover:bg-white hover:text-primary-900 transition-colors"
                   >
                     {t}
                   </button>
@@ -120,19 +120,19 @@ export function SearchOverlay() {
         )}
 
         {query.trim() !== "" && (
-          <div className="flex flex-col gap-8 text-white">
+          <div className="flex flex-col gap-10 text-white">
             {results.cats.length > 0 && (
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-widest text-white/40 mb-3">
-                  [ kategori ]
+                <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+                  [ Categories ]
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {results.cats.map((c) => (
                     <Link
                       key={c.id}
                       to={`/rentals?cat=${c.slug}`}
                       onClick={closeSearch}
-                      className="px-4 py-2 border border-white/20 rounded-full text-sm hover:bg-white hover:text-primary-900 transition-colors"
+                      className="px-5 py-2.5 border border-white/20 rounded-full text-sm hover:bg-white hover:text-primary-900 transition-colors"
                     >
                       {c.name}
                     </Link>
@@ -141,12 +141,12 @@ export function SearchOverlay() {
               </div>
             )}
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-widest text-white/40 mb-3">
-                [ hasil · {results.items.length} item ]
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+                [ Results · {results.items.length} items ]
               </p>
               {results.items.length === 0 ? (
-                <p className="text-white/60 py-6">
-                  Belum ada hasil. Coba kata lain.
+                <p className="text-white/60 py-8">
+                  No results yet. Try another keyword.
                 </p>
               ) : (
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -155,7 +155,7 @@ export function SearchOverlay() {
                       <Link
                         to={`/rental/${i.slug}`}
                         onClick={closeSearch}
-                        className="flex gap-4 p-3 rounded-md border border-white/10 hover:border-white/40 hover:bg-white/5 transition-all"
+                        className="flex gap-4 p-4 rounded-md border border-white/10 hover:border-white/40 hover:bg-white/5 transition-all"
                       >
                         <img
                           src={i.images[0]}
@@ -164,14 +164,14 @@ export function SearchOverlay() {
                           className="w-16 h-16 rounded-md object-cover flex-shrink-0"
                         />
                         <div className="flex-1 min-w-0">
-                          <p className="font-display font-semibold truncate">
+                          <p className="font-display font-semibold truncate leading-snug">
                             {i.name}
                           </p>
-                          <p className="text-xs text-white/50 font-mono uppercase tracking-widest mt-1">
+                          <p className="text-xs text-white/50 font-mono uppercase tracking-[0.25em] mt-1.5">
                             {i.categoryName}
                           </p>
-                          <p className="text-sm mt-1 tabular-nums">
-                            {formatIDR(i.pricePerDay)} / hari
+                          <p className="text-sm mt-1.5 tabular-nums">
+                            {formatIDR(i.pricePerDay)} / day
                           </p>
                         </div>
                       </Link>

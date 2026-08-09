@@ -6,14 +6,17 @@ import { Button } from "@/components/ui/Button";
 export function ArrivalsSection() {
   const items = newDropItems();
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-24 md:py-40 bg-white">
       <div className="container-x">
         <SectionHeader
           number="02"
-          eyebrow="new arrivals"
+          eyebrow="New Arrivals"
           title={
             <>
-              Fresh drop <span className="italic font-normal text-primary-500">this week.</span>
+              Fresh drops{" "}
+              <span className="italic font-normal text-primary-500">
+                this week.
+              </span>
             </>
           }
           action={
@@ -23,7 +26,7 @@ export function ArrivalsSection() {
           }
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {items.slice(0, 4).map((item, i) => (
             <ItemCard key={item.id} item={item} index={i} />
           ))}

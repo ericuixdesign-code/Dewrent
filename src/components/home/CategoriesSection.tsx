@@ -50,7 +50,7 @@ export function CategoriesSection() {
 
   return (
     <section
-      className="py-20 md:py-32 bg-neutral-50 relative"
+      className="py-24 md:py-40 bg-neutral-50 relative overflow-hidden"
       onMouseMove={(e) => {
         const target = e.currentTarget as HTMLElement;
         const rect = target.getBoundingClientRect();
@@ -62,15 +62,15 @@ export function CategoriesSection() {
       }}
       onMouseLeave={() => setCursor((c) => ({ ...c, visible: false }))}
     >
-      <div className="container-x">
+      <div className="container-x mb-10 md:mb-14">
         <SectionHeader
           number="04"
-          eyebrow="categories · 15 pilihan"
+          eyebrow="Categories · 15 options"
           title={
             <>
-              Ada 15 kategori. Yang mana <br className="hidden md:block" />
+              15 categories. <br className="hidden md:block" />
               <span className="italic font-normal text-primary-500">
-                cerita kamu selanjutnya?
+                Which story next?
               </span>
             </>
           }
@@ -80,16 +80,16 @@ export function CategoriesSection() {
       <div
         ref={trackRef}
         className={cn(
-          "flex gap-4 md:gap-6 overflow-x-auto no-scrollbar px-6 md:px-14 pb-6",
-          "select-none cursor-none",
-          isDragging && "cursor-grabbing",
+          "flex gap-5 md:gap-7 overflow-x-auto no-scrollbar px-6 md:px-14 pb-8",
+          "select-none",
+          isDragging ? "cursor-grabbing" : "md:cursor-none cursor-grab",
         )}
       >
-        {categories.map((c, i) => (
+        {categories.map((c) => (
           <Link
             key={c.id}
             to={`/rentals?cat=${c.slug}`}
-            className="group flex-shrink-0 w-[280px] md:w-[320px] aspect-[3/4] rounded-lg overflow-hidden relative bg-primary-900"
+            className="group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-lg overflow-hidden relative bg-primary-900"
             draggable={false}
           >
             <img
@@ -100,17 +100,17 @@ export function CategoriesSection() {
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/30 to-transparent" />
-            <div className="relative w-full h-full p-6 flex flex-col justify-between text-white">
+            <div className="relative w-full h-full p-7 flex flex-col justify-between text-white">
               <div className="flex items-start justify-between">
-                <span className="font-mono text-xs uppercase tracking-widest text-white/70">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/70">
                   [ {c.id} ]
                 </span>
-                <span className="font-mono text-xs uppercase tracking-widest text-white/70 tabular-nums">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/70 tabular-nums">
                   {c.count} pcs
                 </span>
               </div>
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-widest text-secondary-400 mb-2">
+              <div className="space-y-3">
+                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-secondary-400">
                   {c.tagline}
                 </p>
                 <h3 className="font-display text-2xl md:text-3xl font-semibold leading-tight">
@@ -122,9 +122,8 @@ export function CategoriesSection() {
         ))}
       </div>
 
-      {/* Custom cursor */}
       <div
-        className="pointer-events-none absolute hidden md:flex items-center justify-center w-24 h-24 rounded-full bg-primary-500 text-white font-mono text-[10px] uppercase tracking-widest z-20 transition-opacity duration-300"
+        className="pointer-events-none absolute hidden md:flex items-center justify-center w-24 h-24 rounded-full bg-primary-500 text-white font-mono text-[10px] uppercase tracking-[0.25em] z-20 transition-opacity duration-300"
         style={{
           left: cursor.x,
           top: cursor.y,
@@ -134,7 +133,7 @@ export function CategoriesSection() {
       >
         <div className="flex flex-col items-center gap-1">
           <span className="opacity-70">[</span>
-          <span>{isDragging ? "DRAGGING" : "DRAG"}</span>
+          <span>{isDragging ? "Dragging" : "Drag"}</span>
           <span className="opacity-70">]</span>
         </div>
       </div>
