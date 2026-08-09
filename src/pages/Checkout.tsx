@@ -158,7 +158,7 @@ export default function Checkout() {
               </svg>
             </div>
             <p className="mt-8 font-mono text-xs uppercase tracking-[0.3em] text-secondary-700">
-              [ 03 · Done ]
+              Done
             </p>
             <h1 className="mt-4 font-display text-display-lg md:text-display-xl font-semibold text-neutral-900 leading-[0.9] tracking-tight">
               Thank you,<br />
@@ -263,7 +263,7 @@ export default function Checkout() {
         <div className="mb-14 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-              [ 02 · Checkout ]
+              Checkout
             </p>
             <h1 className="font-display text-display-lg md:text-display-xl font-semibold leading-[0.9] tracking-tight text-neutral-900">
               Complete your order.
@@ -284,10 +284,7 @@ export default function Checkout() {
           <div className="flex flex-col gap-14">
             {/* Renter details */}
             <fieldset className="flex flex-col gap-6">
-              <legend className="flex items-baseline gap-4 mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
-                  [ 01 ]
-                </span>
+              <legend className="mb-4">
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
                   Renter Details
                 </span>
@@ -341,10 +338,7 @@ export default function Checkout() {
 
             {/* Pickup / Delivery */}
             <fieldset className="flex flex-col gap-6">
-              <legend className="flex items-baseline gap-4 mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
-                  [ 02 ]
-                </span>
+              <legend className="mb-4">
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
                   Pickup Method
                 </span>
@@ -413,10 +407,7 @@ export default function Checkout() {
 
             {/* Payment */}
             <fieldset className="flex flex-col gap-6">
-              <legend className="flex items-baseline gap-4 mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
-                  [ 03 ]
-                </span>
+              <legend className="mb-4">
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
                   Payment Method
                 </span>
@@ -505,10 +496,7 @@ export default function Checkout() {
 
             {/* Extras */}
             <fieldset className="flex flex-col gap-6">
-              <legend className="flex items-baseline gap-4 mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
-                  [ 04 ]
-                </span>
+              <legend className="mb-4">
                 <span className="font-display text-2xl md:text-3xl font-semibold text-neutral-900">
                   Notes & Promo
                 </span>

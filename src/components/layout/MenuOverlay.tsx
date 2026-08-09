@@ -41,6 +41,7 @@ export function MenuOverlay() {
       />
 
       <div
+        data-lenis-prevent
         className={cn(
           "relative h-full w-full flex flex-col justify-between overflow-y-auto",
           "transition-transform duration-700 ease-out",
@@ -71,14 +72,9 @@ export function MenuOverlay() {
           {items.map((it) => {
             const inner = (
               <div className="group flex items-center justify-between py-5 md:py-7 border-b border-white/15 hover:border-white/50 transition-colors">
-                <div className="flex items-center gap-6 md:gap-12">
-                  <span className="font-mono text-sm md:text-base text-white/40 tabular-nums">
-                    [ {it.num} ]
-                  </span>
-                  <span className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-semibold tracking-tight leading-none group-hover:text-secondary-400 transition-colors">
-                    {it.label}
-                  </span>
-                </div>
+                <span className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-semibold tracking-tight leading-none group-hover:text-secondary-400 transition-colors">
+                  {it.label}
+                </span>
                 <span className="hidden md:inline-block font-mono text-white/40 group-hover:text-secondary-400 group-hover:translate-x-2 transition-all text-2xl">
                   →
                 </span>

@@ -59,6 +59,7 @@ export function SearchOverlay() {
         className="absolute inset-0 bg-primary-950/75 backdrop-blur-lg"
       />
       <div
+        data-lenis-prevent
         className={cn(
           "relative container-x pt-28 md:pt-36 pb-10 flex flex-col gap-8 max-h-screen overflow-y-auto",
           "transition-transform duration-500 ease-out",

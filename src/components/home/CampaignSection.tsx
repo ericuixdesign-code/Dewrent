@@ -13,7 +13,7 @@ export function CampaignSection() {
 
         <div className="relative container-x py-20 md:py-32 w-full">
           <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-secondary-400 mb-8">
-            <span>[ 03 · Campaign ]</span>
+            <span>Campaign</span>
             <span className="text-white/50">· Spring / Summer 2026</span>
           </div>
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">

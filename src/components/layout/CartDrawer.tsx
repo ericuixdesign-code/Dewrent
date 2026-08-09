@@ -104,7 +104,7 @@ export function CartDrawer() {
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-7 py-5">
+            <div data-lenis-prevent className="flex-1 overflow-y-auto px-7 py-5">
               <ul className="flex flex-col divide-y divide-neutral-200">
                 {lines.map((l) => {
                   const days = Math.max(

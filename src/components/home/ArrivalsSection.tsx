@@ -20,7 +20,7 @@ export function ArrivalsSection() {
             </>
           }
           action={
-            <Button as="link" to="/rentals" variant="outline" size="md">
+            <Button as="link" to="/rentals" variant="link" size="md">
               See all rentals
             </Button>
           }

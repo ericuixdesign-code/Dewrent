@@ -54,7 +54,7 @@ export const items: RentalItem[] = [
     deposit: 300000,
     images: [
       img("photo-1533873984035-25970ab07461"),
-      img("photo-1508928061906-59a6dcffe8bd"),
+      img("photo-1547949003-9792a18a2601"),
     ],
     short:
       "60L carrier with internal frame, ideal for 3-5 day expeditions.",
@@ -146,7 +146,7 @@ export const items: RentalItem[] = [
     deposit: 3000000,
     images: [
       img("photo-1567443024551-f3e3cc2be870"),
-      img("photo-1613141412079-e6ce07b1ea25"),
+      img("photo-1519972064555-542444e71b54"),
     ],
     short:
       "3-axis gimbal for mirrorless cameras up to 3kg payload.",
@@ -193,7 +193,7 @@ export const items: RentalItem[] = [
     deposit: 1500000,
     images: [
       img("photo-1520523839897-bd0b52f945a0"),
-      img("photo-1571974599782-87624638275f"),
+      img("photo-1470225620780-dba8ba36b745"),
     ],
     short:
       "61-key keyboard with 758 voices and 235 accompaniment styles.",
@@ -240,7 +240,7 @@ export const items: RentalItem[] = [
     bestseller: true,
     images: [
       img("photo-1518972559570-7cc1309f3229"),
-      img("photo-1493225458393-73a76b7c7c8b"),
+      img("photo-1481349518771-20055b2a7b24"),
     ],
     short:
       "Active 15-inch 1300W speaker with Bluetooth and built-in DSP.",
@@ -261,7 +261,7 @@ export const items: RentalItem[] = [
     pricePerDay: 175000,
     deposit: 2000000,
     images: [
-      img("photo-1571974599782-87624638275f"),
+      img("photo-1470225620780-dba8ba36b745"),
       img("photo-1520523839897-bd0b52f945a0"),
     ],
     short:
@@ -284,7 +284,7 @@ export const items: RentalItem[] = [
     deposit: 2500000,
     images: [
       img("photo-1618609378039-b572f64c5b42"),
-      img("photo-1607145781215-c99f28f4dc1a"),
+      img("photo-1516195851888-6f1a981a862e"),
     ],
     short:
       "Handheld wireless SM58 mic with rack-mountable BLX4 receiver.",
@@ -308,7 +308,7 @@ export const items: RentalItem[] = [
     deposit: 4500000,
     bestseller: true,
     images: [
-      img("photo-1606318313846-ce9e39b3d3b7"),
+      img("photo-1592840062661-a5a7f78e2056"),
       img("photo-1622297845775-5ff3fef71d13"),
     ],
     short:
@@ -331,7 +331,7 @@ export const items: RentalItem[] = [
     deposit: 3500000,
     images: [
       img("photo-1587202372775-e229f172b9d7"),
-      img("photo-1585857188823-c56d2e4c1a4c"),
+      img("photo-1493711662062-fa541adb3fc8"),
     ],
     short:
       "7-inch OLED Switch with dock, 4 Joy-Cons, and 5 party games included.",
@@ -538,7 +538,7 @@ export const items: RentalItem[] = [
     deposit: 1200000,
     images: [
       img("photo-1594736797933-d0501ba2fe65"),
-      img("photo-1618232324348-e18d6efce7f5"),
+      img("photo-1591994843349-f415893b3a6b"),
     ],
     short:
       "i-Size 0-15 month car seat with 360° rotation for easy in-and-out.",
@@ -606,7 +606,7 @@ export const items: RentalItem[] = [
     pricePerDay: 275000,
     deposit: 3000000,
     images: [
-      img("photo-1583391733956-6c78276477e2"),
+      img("photo-1591019479261-1a103585c559"),
       img("photo-1483985988355-763728e1935b"),
     ],
     short:
@@ -676,7 +676,7 @@ export const items: RentalItem[] = [
     deposit: 1500000,
     images: [
       img("photo-1520175480921-4edfa2983e0f"),
-      img("photo-1560306843-6c0f5bd25e70"),
+      img("photo-1547949003-9792a18a2601"),
     ],
     short:
       "Complete samurai costume with armor, replica katana, and hakama.",
@@ -765,7 +765,7 @@ export const items: RentalItem[] = [
     pricePerDay: 45000,
     deposit: 500000,
     images: [
-      img("photo-1518729571365-83d18b5ba48e"),
+      img("photo-1490114538077-0a7f8cb49891"),
       img("photo-1544551763-46a013bb70d5"),
     ],
     short:
@@ -860,7 +860,7 @@ export const items: RentalItem[] = [
     bestseller: true,
     images: [
       img("photo-1626544827763-d516dce335e2"),
-      img("photo-1541428229580-c8fd80eff5b6"),
+      img("photo-1517336714731-489689fd1ca8"),
     ],
     short:
       "3300-lumen projector with HDMI and VGA. Perfect for meetings.",
@@ -927,7 +927,7 @@ export const items: RentalItem[] = [
     pricePerDay: 195000,
     deposit: 2500000,
     images: [
-      img("photo-1533450718592-29d45a68af71"),
+      img("photo-1519972064555-542444e71b54"),
       img("photo-1616432043562-3671ea2e5242"),
     ],
     short:
@@ -972,7 +972,7 @@ export const items: RentalItem[] = [
     deposit: 1500000,
     images: [
       img("photo-1611926653458-09294b3142bf"),
-      img("photo-1626387346567-68d0c1e0d54c"),
+      img("photo-1521737604893-d14cc237f11d"),
     ],
     short:
       "Beam-splitter teleprompter for 10-inch tablet with teleprompter app.",

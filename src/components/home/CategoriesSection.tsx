@@ -101,10 +101,7 @@ export function CategoriesSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/30 to-transparent" />
             <div className="relative w-full h-full p-7 flex flex-col justify-between text-white">
-              <div className="flex items-start justify-between">
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/70">
-                  [ {c.id} ]
-                </span>
+              <div className="flex items-start justify-end">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/70 tabular-nums">
                   {c.count} pcs
                 </span>
@@ -123,19 +120,20 @@ export function CategoriesSection() {
       </div>
 
       <div
-        className="pointer-events-none absolute hidden md:flex items-center justify-center w-24 h-24 rounded-full bg-primary-500 text-white font-mono text-[10px] uppercase tracking-[0.25em] z-20 transition-opacity duration-300"
+        className="pointer-events-none absolute hidden md:flex items-center justify-center w-32 h-20 bg-primary-500 text-white font-mono text-[11px] uppercase tracking-[0.3em] font-semibold z-20 transition-opacity duration-300"
         style={{
           left: cursor.x,
           top: cursor.y,
-          transform: "translate(-50%, -50%)",
+          transform: `translate(-50%, -50%) rotate(${isDragging ? -6 : -3}deg)`,
           opacity: cursor.visible ? 1 : 0,
+          borderRadius: "62% 38% 55% 45% / 48% 60% 40% 52%",
         }}
       >
-        <div className="flex flex-col items-center gap-1">
-          <span className="opacity-70">[</span>
+        <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="opacity-60">[</span>
           <span>{isDragging ? "Dragging" : "Drag"}</span>
-          <span className="opacity-70">]</span>
-        </div>
+          <span className="opacity-60">]</span>
+        </span>
       </div>
     </section>
   );

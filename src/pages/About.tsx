@@ -71,7 +71,7 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary-950/70 to-primary-950" />
         <div className="relative container-x">
           <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-secondary-400 mb-8">
-            <span>[ 01 · Who We Are ]</span>
+            <span>Who We Are</span>
           </div>
           <h1 className="font-display text-[14vw] md:text-[11vw] lg:text-[9vw] leading-[0.9] font-semibold tracking-tighter text-balance max-w-6xl">
             Rental,{" "}
@@ -91,7 +91,7 @@ export default function About() {
         <div className="container-x grid md:grid-cols-2 gap-12 md:gap-24 items-start">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-              [ 02 · Story ]
+              Story
             </p>
             <h2 className="font-display text-display-md md:text-display-lg font-semibold text-neutral-900 leading-[0.95] tracking-tight text-balance">
               It started <br />
@@ -121,7 +121,7 @@ export default function About() {
       <section className="py-24 md:py-40 bg-secondary-50">
         <div className="container-x">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-            [ 03 · What We Believe ]
+            What We Believe
           </p>
           <h2 className="font-display text-display-md md:text-display-lg font-semibold text-neutral-900 leading-[0.95] tracking-tight text-balance max-w-4xl">
             Four things that <br />
@@ -136,10 +136,7 @@ export default function About() {
                 key={v.num}
                 className="p-7 md:p-9 bg-white rounded-lg border border-neutral-200"
               >
-                <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary-600">
-                  [ {v.num} ]
-                </p>
-                <h3 className="mt-4 font-display text-2xl md:text-3xl font-semibold text-neutral-900 leading-tight">
+                <h3 className="font-display text-2xl md:text-3xl font-semibold text-neutral-900 leading-tight">
                   {v.title}
                 </h3>
                 <p className="mt-4 text-neutral-600 leading-relaxed">{v.desc}</p>
@@ -152,7 +149,7 @@ export default function About() {
       <section className="py-24 md:py-40 bg-white">
         <div className="container-x">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-            [ 04 · Team ]
+            Team
           </p>
           <h2 className="font-display text-display-md md:text-display-lg font-semibold text-neutral-900 leading-[0.95] tracking-tight text-balance max-w-4xl">
             The people <br />
@@ -183,7 +180,7 @@ export default function About() {
       <section className="py-24 md:py-40 bg-primary-950 text-white">
         <div className="container-x">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-secondary-400 mb-6">
-            [ 05 · Hubs ]
+            Hubs
           </p>
           <h2 className="font-display text-display-md md:text-display-lg font-semibold leading-[0.95] tracking-tight text-balance max-w-4xl">
             Serving{" "}
@@ -217,7 +214,7 @@ export default function About() {
         <div className="container-x grid md:grid-cols-2 gap-12 md:gap-24 items-start">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-              [ 06 · Contact ]
+              Contact
             </p>
             <h2 className="font-display text-display-md md:text-display-lg font-semibold text-neutral-900 leading-[0.95] tracking-tight text-balance">
               Need something <br />

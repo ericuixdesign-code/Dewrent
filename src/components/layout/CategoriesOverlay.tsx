@@ -63,7 +63,7 @@ export function CategoriesOverlay() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto container-x pb-10 pt-4">
+        <div data-lenis-prevent className="flex-1 overflow-y-auto container-x pb-10 pt-4">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
             {categories.map((c) => (
               <li key={c.id}>
@@ -80,9 +80,6 @@ export function CategoriesOverlay() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/40 to-transparent" />
                   <div className="relative w-full p-6 flex flex-col gap-2 text-white">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/60">
-                      [ {c.id} ]
-                    </span>
                     <span className="font-display text-xl md:text-2xl font-semibold leading-tight">
                       {c.name}
                     </span>

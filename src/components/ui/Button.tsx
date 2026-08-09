@@ -2,7 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { Link, type LinkProps } from "react-router-dom";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "accent" | "dark";
+type Variant = "primary" | "secondary" | "outline" | "ghost" | "accent" | "dark" | "link";
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 const sizeCls: Record<Size, string> = {
@@ -26,6 +26,8 @@ const variantCls: Record<Variant, string> = {
     "bg-secondary-500 text-neutral-900 hover:bg-secondary-600 hover:text-white active:bg-secondary-700 active:text-white focus-visible:shadow-focus-secondary shadow-sm",
   dark:
     "bg-neutral-900 text-white hover:bg-neutral-800 active:bg-neutral-700 shadow-sm",
+  link:
+    "bg-transparent text-primary-600 hover:text-primary-800 font-bold shadow-none border-0",
 };
 
 type CommonProps = {

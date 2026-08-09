@@ -37,7 +37,7 @@ export function ItemCard({
             className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           />
         )}
-        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+        <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5">
           {item.newDrop && (
             <span className="inline-flex items-center px-2.5 py-1 bg-secondary-500 text-neutral-900 rounded-full text-[10px] font-mono uppercase tracking-[0.25em] font-semibold">
               New Drop
@@ -52,14 +52,9 @@ export function ItemCard({
       </div>
 
       <div className="pt-5 pb-2">
-        <div className="flex items-baseline justify-between gap-4">
-          <h3 className="font-display text-lg md:text-xl font-semibold text-neutral-900 truncate group-hover:text-primary-600 transition-colors leading-snug">
-            {item.name}
-          </h3>
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 whitespace-nowrap">
-            [ {String(index + 1).padStart(2, "0")} ]
-          </span>
-        </div>
+        <h3 className="font-display text-lg md:text-xl font-semibold text-neutral-900 truncate group-hover:text-primary-600 transition-colors leading-snug">
+          {item.name}
+        </h3>
         <div className="flex items-baseline justify-between mt-2 gap-3">
           <p className="text-xs text-neutral-500 font-mono uppercase tracking-[0.25em] truncate">
             {item.categoryName}

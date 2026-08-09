@@ -5,7 +5,7 @@ export default function NotFound() {
     <section className="pt-36 md:pt-44 pb-28 min-h-[80vh] bg-white flex items-center">
       <div className="container-x text-center">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-          [ 404 · Not Found ]
+          Not Found
         </p>
         <h1 className="mt-6 font-display text-display-xl md:text-display-2xl font-semibold text-neutral-900 leading-none tracking-tighter">
           404

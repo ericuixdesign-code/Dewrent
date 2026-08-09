@@ -11,7 +11,7 @@ export function BoldSection() {
     <section className="relative py-28 md:py-48 bg-secondary-50 overflow-hidden">
       <div className="container-x">
         <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-primary-700 mb-8">
-          <span>[ 06 · Why Dewrent ]</span>
+          <span>Why Dewrent</span>
         </div>
         <h2 className="font-display text-[12vw] md:text-[10vw] lg:text-[8vw] leading-[0.95] font-semibold tracking-tighter text-neutral-900 text-balance max-w-6xl">
           Why own when <br />

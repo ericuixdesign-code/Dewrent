@@ -25,10 +25,11 @@ export function SectionHeader({
       )}
     >
       <div className={cn("flex-1", align === "center" && "flex flex-col items-center")}>
-        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-          <span>[ {number} ]</span>
-          {eyebrow && <span>· {eyebrow}</span>}
-        </div>
+        {eyebrow && (
+          <div className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
+            {eyebrow}
+          </div>
+        )}
         <h2 className="mt-3 font-display text-display-md md:text-display-lg lg:text-display-xl leading-[0.95] text-neutral-900 font-semibold tracking-tight text-balance">
           {title}
         </h2>

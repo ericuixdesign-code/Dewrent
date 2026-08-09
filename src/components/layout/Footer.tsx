@@ -14,7 +14,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
           <div>
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-secondary-400">
-              [ 07 · Manifesto ]
+              Manifesto
             </span>
             <h2 className="mt-8 font-display text-display-lg md:text-display-xl lg:text-display-2xl leading-[0.95] font-semibold text-balance">
               Rent everything.<br />

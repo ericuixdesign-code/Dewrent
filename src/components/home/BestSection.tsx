@@ -20,7 +20,7 @@ export function BestSection() {
             </>
           }
           action={
-            <Button as="link" to="/rentals" variant="secondary" size="md">
+            <Button as="link" to="/rentals" variant="link" size="md">
               See all
             </Button>
           }

@@ -24,7 +24,7 @@ export default function Cart() {
         <div className="mb-14 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-              [ 01 · Cart ]
+              Cart
             </p>
             <h1 className="font-display text-display-lg md:text-display-xl font-semibold leading-[0.9] tracking-tight text-neutral-900">
               Your Cart.

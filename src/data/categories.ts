@@ -51,7 +51,7 @@ export const categories: Category[] = [
     name: "Gaming & Console",
     tagline: "Level up your weekend",
     cover:
-      "https://images.unsplash.com/photo-1606318313846-ce9e39b3d3b7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&fit=crop&w=1200&q=80",
     count: 3,
   },
   {
@@ -132,7 +132,7 @@ export const categories: Category[] = [
     name: "Photo & Video Studio",
     tagline: "Pro setup in a day",
     cover:
-      "https://images.unsplash.com/photo-1533450718592-29d45a68af71?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519972064555-542444e71b54?auto=format&fit=crop&w=1200&q=80",
     count: 3,
   },
   {

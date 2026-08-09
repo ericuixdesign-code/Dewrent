@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { cn } from "@/lib/cn";
 
@@ -12,7 +12,6 @@ export function Header() {
     totalItems,
   } = useCart();
   const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -21,108 +20,65 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isHome = pathname === "/";
-  const dark = scrolled || !isHome;
-
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out",
-        dark
-          ? "bg-white/90 backdrop-blur-md border-b border-neutral-200/70"
-          : "bg-transparent",
+        "fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ease-out",
+        scrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-neutral-200/60"
+          : "bg-white/85 backdrop-blur-md",
       )}
     >
-      <div className="container-x flex items-center justify-between h-[76px] md:h-[88px]">
-        <Link
-          to="/"
-          className={cn(
-            "font-display text-2xl md:text-[28px] font-semibold tracking-tight leading-none",
-            dark ? "text-neutral-900" : "text-white",
-          )}
-        >
-          Dewrent<span className="text-primary-500">.</span>
-        </Link>
+      <div className="w-full px-5 sm:px-6 md:px-8 lg:px-10 h-[76px] md:h-[88px] flex items-center text-neutral-900">
+        <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-4 w-full">
+          <nav className="flex items-center gap-5 md:gap-8 font-mono text-[15px] md:text-[16px] uppercase tracking-[0.15em] font-medium">
+            <button
+              onClick={openMenu}
+              className="hover:opacity-60 transition-opacity"
+            >
+              Menu <span className="opacity-50">+</span>
+            </button>
+            <button
+              onClick={openCategories}
+              className="hidden sm:inline-flex hover:opacity-60 transition-opacity"
+            >
+              Categories <span className="opacity-50">+</span>
+            </button>
+          </nav>
 
-        <nav
-          className={cn(
-            "hidden lg:flex items-center gap-1 font-mono text-[12px] uppercase tracking-[0.2em]",
-            dark ? "text-neutral-800" : "text-white",
-          )}
-        >
-          <HeaderItem onClick={openMenu} icon="+">
-            Menu
-          </HeaderItem>
-          <HeaderItem onClick={openDrawer}>
-            Bag<span className="opacity-50 mx-1">·</span>
-            <span className="tabular-nums">{totalItems}</span>
-          </HeaderItem>
+          <div className="hidden md:flex justify-center">
+            <Link
+              to="/"
+              className="font-display text-2xl md:text-[30px] lg:text-[34px] font-semibold tracking-[0.15em] uppercase leading-none"
+            >
+              Dewrent
+            </Link>
+          </div>
+
+          <nav className="flex items-center justify-end gap-5 md:gap-8 font-mono text-[15px] md:text-[16px] uppercase tracking-[0.15em] font-medium">
+            <button
+              onClick={openSearch}
+              className="hidden sm:inline-flex hover:opacity-60 transition-opacity"
+            >
+              Search
+            </button>
+            <button
+              onClick={openDrawer}
+              className="hover:opacity-60 transition-opacity"
+            >
+              Bag<span className="opacity-40">.</span>
+              <span className="tabular-nums">{totalItems}</span>
+            </button>
+          </nav>
+
           <Link
-            to="/rentals"
-            className="px-4 py-2 rounded-md hover:bg-primary-100/60 transition-colors"
+            to="/"
+            className="md:hidden col-span-2 flex justify-center font-display text-xl font-semibold tracking-[0.2em] uppercase leading-none order-first"
           >
-            Shop All
+            Dewrent
           </Link>
-          <HeaderItem onClick={openSearch}>Search</HeaderItem>
-          <HeaderItem onClick={openCategories} icon="+">
-            Categories
-          </HeaderItem>
-        </nav>
-
-        <div
-          className={cn(
-            "hidden md:flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.25em]",
-            dark ? "text-primary-600" : "text-white/80",
-          )}
-        >
-          <span className="opacity-60">[</span>
-          <span className="mx-0.5">D-RNT</span>
-          <span className="opacity-60">]</span>
-        </div>
-
-        {/* Mobile actions */}
-        <div className="flex lg:hidden items-center gap-2 font-mono text-[12px]">
-          <button
-            onClick={openDrawer}
-            className={cn(
-              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em]",
-              dark ? "text-neutral-800" : "text-white",
-            )}
-          >
-            Bag · {totalItems}
-          </button>
-          <button
-            onClick={openMenu}
-            className={cn(
-              "px-3 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em]",
-              dark ? "text-neutral-800" : "text-white",
-            )}
-            aria-label="Open menu"
-          >
-            Menu +
-          </button>
         </div>
       </div>
     </header>
-  );
-}
-
-function HeaderItem({
-  onClick,
-  children,
-  icon,
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-  icon?: string;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="px-4 py-2 rounded-md hover:bg-primary-100/60 transition-colors uppercase tracking-[0.2em] inline-flex items-center gap-2"
-    >
-      <span>{children}</span>
-      {icon && <span className="opacity-60 text-[10px]">{icon}</span>}
-    </button>
   );
 }
